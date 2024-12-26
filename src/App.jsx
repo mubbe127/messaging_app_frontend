@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import { AuthProvider } from "./utils/useAuth.js";
-
+import { AuthProvider } from "./utils/useAuth.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 import "./App.css";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +15,10 @@ function App() {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage/>,
     },
   ]);
 
