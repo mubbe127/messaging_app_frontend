@@ -6,18 +6,14 @@ import styles from "./Login.module.css";
 function Login({ setUser, setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isNavigationLoading, setIsNavigationLoading] = useState(true);
+  const [isNavigationLoading, setIsNavigationLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { authState } = useAuth();
+  const { authState, setAuthState } = useAuth();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (authState.isAuthenticated) {
-      navigate("/home");
-    }
-    setIsNavigationLoading(false)
-  }, [navigate]);
+  
+  
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -42,8 +38,10 @@ function Login({ setUser, setToken }) {
 
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken)
+      setAuthState({ isAuthenticated: true, loading: false });
       // Redirect after storing the token
-      navigate("/home");
+      console.log(data)
     } catch (error) {
       setError("Login failed. Please try again.");
       console.error("Error fetching from post API:", error);

@@ -1,8 +1,10 @@
 import{ createContext, useState, useEffect, useContext } from 'react';
 import {jwtDecode } from 'jwt-decode';
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Create context
 const AuthContext = createContext();
+
 
 // A function to check if the token is nearing expiration
 const isTokenNearingExpiry = (exp, buffer = 300) => { // Buffer in seconds (default: 5 minutes)
@@ -15,6 +17,9 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: false,
     loading: true,
   });
+  const navigate = useNavigate(); // React Router hook for navigation
+  const location = useLocation(); // React Router hook to get the current location
+
 
   // Get the JWT and refresh token from cookies or local storage
   const getToken = () => {
@@ -27,10 +32,11 @@ export const AuthProvider = ({ children }) => {
   // Function to refresh the access token
   const refreshAccessToken = async () => {
     const { refreshToken } = getToken();
+    console.log(refreshToken)
     if (!refreshToken) return;
 
     try {
-      const response = await fetch('/api/user/refresh-token', {
+      const response = await fetch('http://localhost:4100/api/users/refresh-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,29 +44,49 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ refreshToken }),
       });
 
-      if (!response.ok) throw new Error('Failed to refresh token');
+      if (!response.ok) {
+        const error = await response.json();
+        console.log(error)
+        throw error
+      }
       
       const data = await response.json();
+      
       localStorage.setItem('accessToken', data.accessToken);
       setAuthState({ isAuthenticated: true, loading: false });
+      if(location.pathname==="/login"){
+        navigate("/home")
+      }
     } catch (error) {
-      console.error('Token refresh failed:', error);
+      console.log(error);
       setAuthState({ isAuthenticated: false, loading: false });
+      if(location.pathname!=="/signup") {
+        navigate('/login')
+      }
     }
   };
 
   // Check token validity and refresh if nearing expiration
   useEffect(() => {
+    console.log("Initiate refresh effect")
     const { accessToken } = getToken();
 
     if (accessToken) {
       const decoded = jwtDecode(accessToken);
+      console.log(decoded)
 
       if (isTokenNearingExpiry(decoded.exp)) {
+        console.log("intiate refresh")
         refreshAccessToken();
+       
       } else {
         setAuthState({ isAuthenticated: true, loading: false });
-
+        console.log("navigate ")
+        if(location.pathname==="/login"){
+          console.log("now navigate")
+          navigate("/home")
+        }
+        console.log(authState)
         // Set up a timer to refresh the token automatically before expiration
         const timeToExpiry = (decoded.exp * 1000) - Date.now() - 300000; // 5 minutes before expiry
         const refreshTimer = setTimeout(() => {
@@ -69,13 +95,17 @@ export const AuthProvider = ({ children }) => {
 
         return () => clearTimeout(refreshTimer); // Clear the timer on component unmount
       }
+     
     } else {
       setAuthState({ isAuthenticated: false, loading: false });
+      if(location.pathname!=="/signup") {
+      navigate('/login')
+    }
     }
   }, []); // Runs once when component mounts
 
   return (
-    <AuthContext.Provider value={{ authState, refreshAccessToken, getToken }}>
+    <AuthContext.Provider value={{ authState, setAuthState, refreshAccessToken, getToken }}>
       {children}
     </AuthContext.Provider>
   );
