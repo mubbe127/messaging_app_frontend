@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../utils/useAuth";
 
 import styles from "./SignUp.module.css";
 
@@ -15,6 +16,7 @@ function SignUp() {
   const [user, setUser] = useState(false);
   const [isNavigationLoading, setIsNavigationLoading] = useState(true);
   const [errors, setErrors] = useState(null);
+  const {authState, setAuthState}= useAuth()
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -50,6 +52,7 @@ function SignUp() {
         console.log(data.message);
         console.log(data)
         setUser(data.user);
+        setAuthState({isAuthenticated:true, loading: false})
       })
       .catch((err) => {
         console.log(err);
