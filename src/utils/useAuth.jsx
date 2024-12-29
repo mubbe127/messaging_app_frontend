@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     isAuthenticated: false,
     loading: true,
+    usesr: null,
   });
   const navigate = useNavigate(); // React Router hook for navigation
   const location = useLocation(); // React Router hook to get the current location
@@ -53,16 +54,12 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
       
       localStorage.setItem('accessToken', data.accessToken);
-      setAuthState({ isAuthenticated: true, loading: false });
-      if(location.pathname==="/login"){
-        navigate("/home")
-      }
+      setAuthState({ isAuthenticated: true, loading: false, user: data.user });
+      
     } catch (error) {
       console.log(error);
       setAuthState({ isAuthenticated: false, loading: false });
-      if(location.pathname!=="/signup") {
-        navigate('/login')
-      }
+   
     }
   };
 
@@ -80,11 +77,9 @@ export const AuthProvider = ({ children }) => {
         refreshAccessToken();
        
       } else {
-        setAuthState({ isAuthenticated: true, loading: false });
-        console.log("navigate ")
-        if(location.pathname==="/login"){
-          console.log("now navigate")
-          navigate("/home")
+        if(!authState.isAuthenticated){
+      //   REUSED REFRESHTOKENFUNCTION FOR SIMPLICITY. CONSIDER ADDING AUTH FETCHING BASED ON ACCESS TOKEN INSTEAD. 
+          refreshAccessToken()
         }
         console.log(authState)
         // Set up a timer to refresh the token automatically before expiration
@@ -98,11 +93,26 @@ export const AuthProvider = ({ children }) => {
      
     } else {
       setAuthState({ isAuthenticated: false, loading: false });
+    
+    }
+  }, []); 
+
+  // TEST MOVING NAVIGATION LOGIC TO RENDERED COMPONENT USING <NAVIGATE/>
+  // CHECK IF POSSIBLE TO ADD LOGIC SO THAT IF A USER HAS NO AUTH AT PAGE THE USER IS PROMPTED TO LOG IN AND (!IMPORTANT) SENT TO THE PAGE THE USER TRIED TO ACCESS
+  useEffect(()=> {
+
+    if(authState.isAuthenticated){
+      console.log(authState)
+      if(location.pathname==="/login"){
+        navigate('/home')
+      }
+    }else {
       if(location.pathname!=="/signup") {
-      navigate('/login')
+      navigate("/login")
     }
     }
-  }, []); // Runs once when component mounts
+  }, [authState, navigate])
+// Runs once when component mounts
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState, refreshAccessToken, getToken }}>
