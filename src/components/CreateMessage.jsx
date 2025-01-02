@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../utils/useAuth";
+import { useAuth } from "../utils/useAuth.jsx";
 
-import styles from "./Chat.module.css";
+import styles from "./CreateMessage.module.css";
 
-function CreateMessage({ chatId = null, members }) {
+function CreateMessage({ chatId = null, members=null, setSentMessage=false }) {
   const [newMessage, setNewMessage] = useState("");
   const { authState } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function createChat() {
     const token = localStorage.getItem("accessToken");
@@ -19,7 +19,7 @@ function CreateMessage({ chatId = null, members }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          members,
+          memberIds: members.map(member=>member.id),
           userId: authState.user.id,
         }),
       });
@@ -37,6 +37,7 @@ function CreateMessage({ chatId = null, members }) {
   }
   async function createMessage(chatId) {
     try {
+      const token = localStorage.getItem("accessToken");
       const response = await fetch(`http://localhost:4100/api/messages`, {
         method: "POST",
         headers: {
@@ -53,7 +54,7 @@ function CreateMessage({ chatId = null, members }) {
         const error = await response.json();
         throw error;
       }
-      const data = response.json();
+      const data = await response.json();
       console.log("succesfully posted message", data);
       setNewMessage("");
     } catch (error) {
@@ -63,14 +64,17 @@ function CreateMessage({ chatId = null, members }) {
 
   const submitMessage = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem("accessToken");
-    if (!chatId) {
+
+    if (chatId && members) {
+      const chat = await createMessage(chatId);
+      navigate(`/chats/${chatId}`);
+    } else if (!chatId && members) {
       const chat = await createChat();
       const message = await createMessage(chat.id);
-      navigate(`/${chat.id}`)
-
-    } else {
-      const chat = await createMessage(chatId);
+      setSentMessage(true);
+    } else if (chatId) {
+      const message = await createMessage(chatId);
+      setSentMessage(true);
     }
   };
 
@@ -83,7 +87,7 @@ function CreateMessage({ chatId = null, members }) {
           className={styles.content}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-        ></textarea>
+        />
         <button type="submit">Send</button>
       </form>
     </div>
