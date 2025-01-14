@@ -1,18 +1,53 @@
-import { useEffect, useState } from "react";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { Navigate, useParams, useNavigate, Link,} from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
 
 import styles from "./CreateChat.module.css";
 import CreateMessage from "./CreateMessage";
+import Messages from "./Messages";
+import RenderProfileImage from "./RenderProfileImage";
 
 function CreateChat() {
   const [searchedList, setSearchedList] = useState(null);
-  const [chat, setChat] = useState(null);
+  const [chat, setChat] = useState({ members: [], messages: [] });
   const [addedMembers, setAddedMembers] = useState();
   const [searchInput, setSearchInput] = useState("");
   const { authState } = useAuth();
   const navigate = useNavigate();
+  const searchRef = useRef(null)
 
+
+  const { memberId } = useParams();
+
+  const isMobile = window.innerWidth <= 768;
+
+  const goBack = () => {
+    navigate(-1); // Navigates to the previous page
+  };
+
+  useEffect(() => {
+    if (memberId) {
+      const token = localStorage.getItem("accessToken");
+      fetch(`http://localhost:4100/api/users/${memberId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          addMember(response);
+        });
+    }
+    // Create new array with the member
+  }, []);
+  useEffect(()=>{
+
+    if(searchRef.current) {
+      searchRef.current.focus()
+    }
+  },[addedMembers])
   async function searchUser(e) {
     const token = localStorage.getItem("accessToken");
     console.log(authState);
@@ -66,10 +101,10 @@ function CreateChat() {
       : [member]; // Create new array with the member
 
     setAddedMembers(updatedMembers);
-    console.log(updatedMembers); // This will correctly log the updated array
+    console.log("updatedmemebrs", updatedMembers);
 
     const token = localStorage.getItem("accessToken");
-    console.log(token);
+
     setSearchInput("");
     setSearchedList(null);
 
@@ -83,7 +118,10 @@ function CreateChat() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            memberIds: updatedMembers.map((member) => member.id),
+            memberIds: updatedMembers.map((member) => {
+              console.log("kanske funkar", member);
+              return member.id;
+            }),
             userId: authState.user.id,
           }),
         }
@@ -95,34 +133,70 @@ function CreateChat() {
       }
 
       const data = await response.json();
-      console.log(data?.foundchat);
+      console.log("found chat", data?.foundchat);
 
       if (data.foundchat.length > 0) {
-        console.log("set data");
+        console.log("set data", data);
+
         setChat(data.foundchat[0]);
       } else {
-        setChat();
+        setChat({ members: [], messages: [] });
       }
     } catch (error) {
       console.log(error);
     }
   }
-  async function addChat() {}
+  async function addChat(chat) {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const response = await fetch(`http://localhost:4100/api/chats`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat,
+        }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw error;
+      }
+      const data = await response.json();
+      console.log("succesful fetched", data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={styles.createChatContainer}>
-      <div className={styles.searchContainer}>
-        <div className={styles.toContainer}>
-          {" "}
-          <p>Till:</p>
+      {isMobile && (
+        <div className={styles.header}>
+          <div onClick={goBack} className={styles.cancel}>
+            <p>Cancel</p>
+          </div>
+
+          <div className={styles.heading}>
+            <h2>New message</h2>
+          </div>
         </div>
+      )}
+      <div
+        className={
+          isMobile ? styles.searchContainerMobile : styles.searchContainer
+        }
+      >
         <div className={styles.addedMembersContainer}>
+          <div className={styles.toContainer}>
+            <p>Till:</p>
+          </div>
           {addedMembers &&
             addedMembers.map((member) => (
               <div className={styles.addedMemberContainer} key={member.id}>
-                <p>
-                  {member.firstname} {member.lastname}
-                </p>
+                <p>{member.firstname}</p>
+                <p>{member.lastname}</p>
 
                 <img
                   src="/icons/cancel.svg"
@@ -132,55 +206,66 @@ function CreateChat() {
                 />
               </div>
             ))}
-        </div>
-        <form action="">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            onChange={(e) => searchUser(e)}
-            value={searchInput}
-            autoComplete="off"
-          />
-        </form>
-        <div className={styles.searchedListContainer}>
-          {searchedList &&
-            searchedList.chats.length > 0 &&
-            searchedList.chats.map((searchedChat) => (
-              <div
-                className={styles.searchedChatContainer}
-                key={searchedChat.id}
-                onClick={() => addChat(searchedChat.id)}
-              >
-                <img src="" alt="" />
-                <p>{searchedChat.name}</p>
-              </div>
-            ))}
-          {searchedList &&
-            searchedList.users.length > 0 &&
-            searchedList.users.map((searchedUser) => (
-              <div
-                className={styles.searchedUserContainer}
-                key={searchedUser.id}
-                onClick={() => addMember(searchedUser)}
-              >
-                <img src="" alt="" />
-                <p>
-                  {searchedUser.firstname} {searchedUser.lastname}
-                </p>
-              </div>
-            ))}
+          <div className={styles.searchListAndInputContainer}>
+            <form action="">
+              <input
+                type="search"
+                name="search"
+                id="search"
+                onChange={(e) => searchUser(e)}
+                value={searchInput}
+                autoComplete="off"
+                ref={searchRef}
+              />
+            </form>
+            {searchedList &&
+              (searchedList.chats?.length > 0 || searchedList.users?.length) >
+                0 && (
+                <div className={styles.searchedListContainer}>
+                  {searchedList.chats.map((searchedChat) => (
+                    <Link
+                      to={"/chats/" + searchedChat.id}
+                      className={styles.searchedChatContainer}
+                      key={searchedChat.id}
+                      onClick={() => addChat(searchedChat)}
+                    >
+                      <RenderProfileImage
+                        chat={searchedChat}
+                        authState={authState}
+                        size={50}
+                      />
+                      <p>{searchedChat.name}</p>
+                    </Link>
+                  ))}
+                  {searchedList &&
+                    searchedList.users.length > 0 &&
+                    searchedList.users.map((searchedUser) => (
+                      <div
+                        className={styles.searchedUserContainer}
+                        key={searchedUser.id}
+                        onClick={() => addMember(searchedUser)}
+                      >
+                        <img
+                          src={
+                            searchedUser.profileImage
+                              ? "http://localhost:4100/" +
+                                searchedUser.profileImage
+                              : "/icons/profile.svg"
+                          }
+                          alt=""
+                        />
+                        <p>
+                          {searchedUser.firstname} {searchedUser.lastname}
+                        </p>
+                      </div>
+                    ))}
+                </div>
+              )}
+          </div>
         </div>
       </div>
 
-      <div className={styles.chatContainer}>
-        {chat &&
-          chat.messages.map((message) => (
-            <div className={styles.messageContainer} key={message.id}>
-              <p>{message.content}</p>
-            </div>
-          ))}
-      </div>
+      <Messages chat={chat} />
       <CreateMessage chatId={chat && chat.id} members={addedMembers} />
     </div>
   );
