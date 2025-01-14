@@ -4,11 +4,26 @@ import { useAuth } from "../utils/useAuth";
 import formatDate from "../utils/utils";
 
 import styles from "./Messages.module.css";
+import { useChat } from "./ChatProvider";
 
 function Messages({ chat }) {
   const { authState } = useAuth();
   const { chatId } = useParams();
+  const containerRef = useRef()
+  const {sentMessage}= useChat()
+  const [reRender, setReRender]= useState(false)
 
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      setTimeout(()=>{
+        container.scrollTop = container.scrollHeight;
+
+      },10)
+      
+    }
+  }, [chat, sentMessage, reRender]);
 
 
   const memberMap = useMemo(() => {
@@ -21,7 +36,7 @@ function Messages({ chat }) {
  
   let lastMessage = { time: 0, user: null, profileImage:null, };
   return (
-    <div className={styles.messagesContainer}>
+    <div className={styles.messagesContainer} ref={containerRef}>
       {chat && chat.messages.length>0 &&
         chat.messages.map((message, index) => {
           const messageDate = new Date(message.createdAt).getTime();
@@ -97,6 +112,7 @@ function Messages({ chat }) {
                         <img
                           src={"http://localhost:4100/" + file.filePath}
                           alt=""
+                          onLoad={()=>setReRender(true)}
                         />
                       </div>
                     );
@@ -111,6 +127,7 @@ function Messages({ chat }) {
                           src="/icons/pdf.svg"
                           alt=""
                           className={styles.icon}
+                          onLoad={()=>setReRender(true)}
                         />
                         <p>{file.fileName}</p>
                       </Link>
@@ -130,6 +147,7 @@ function Messages({ chat }) {
                           src="/icons/excel.svg"
                           alt=""
                           className={styles.icon}
+                          onLoad={()=>setReRender(true)}
                         />
                         <p>{file.fileName}</p>
                       </Link>
@@ -149,6 +167,7 @@ function Messages({ chat }) {
                           src="/icons/docx.svg"
                           alt=""
                           className={styles.icon}
+                          onLoad={()=>setReRender(true)}
                         />
                         <p>{file.fileName}</p>
                       </Link>
