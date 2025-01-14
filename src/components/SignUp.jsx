@@ -62,7 +62,7 @@ function SignUp() {
       .finally(() => setIsLoading(false));
   }
   return (
-    <>
+    <div className={styles.signUpContainer}>
       {user ? (
         <div className={styles.welcomeUser}>
           <h3>Welcome {user.username}</h3>
@@ -178,7 +178,7 @@ function SignUp() {
           </form>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
