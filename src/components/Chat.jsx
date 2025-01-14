@@ -6,6 +6,7 @@ import CreateMessage from "./CreateMessage";
 import Messages from "./Messages";
 import { useChat } from "./ChatProvider.jsx";
 import { useNavigate } from "react-router-dom";
+import EditChat from "./EditChat.jsx";
 
 import styles from "./Chat.module.css";
 
@@ -55,13 +56,14 @@ function Chat() {
     }
   }
   function displayOptions(e) {
+    
     if (optionsRef.current && !optionsRef.current.contains(e.target)) {
       setShowOptions(false);
     }
   }
   return (
     <>
-      {chat && authState.isAuthenticated && (
+      {chat && !(isMobile && editChat) && authState.isAuthenticated && (
         <div className={styles.chatContainer}>
           <div className={styles.header}>
             <div className={styles.profileAndNamesContainer}>
@@ -72,12 +74,10 @@ function Chat() {
                 </div>
               )}
               {chat.profileImage ? (
-                <div>
-                  <img
-                    src={"http://localhost:4100/" + chat.profileImage}
-                    alt=""
-                  />
-                </div>
+              <div className={`${styles.profileImageContainer} ${styles.single}`}>
+                            <img src={"http://localhost:4100/" + chat.profileImage} className={`${
+                                      styles.profileImage0} ${styles.single}`} alt="" />
+                          </div>
               ) : (
                 (() => {
                   let memberIds = [];
@@ -219,7 +219,7 @@ function Chat() {
                     chat.members.map((member) => (
                       <div key={member.id} className={styles.memberContainer}>
                         <Link
-                          to={"/chats/new/" + member.id}
+                          to={"/new/" + member.id}
                           className={styles.memberLink}
                         >
                           <div className={styles.profileImage}>
@@ -266,7 +266,7 @@ function Chat() {
           <CreateMessage chatId={chatId} />
         </div>
       )}
-      {editChat && <div className={styles.editChatContainer}></div>}
+      {editChat && <EditChat chat={chat } setEditChat={setEditChat}/>}
     </>
   );
 }
