@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/useAuth.jsx";
+import styles from "./Logout.module.css"
 
 function Logout() {
   const { authState, setAuthState } = useAuth();
+  const navigate = useNavigate()
 
 
 
@@ -22,15 +24,15 @@ function Logout() {
     
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("accessToken");
-
-
     setAuthState({ isAuthenticated: false, loading: false, user:null });
+    navigate("/login")
+
   };
 
   return (
     <>
       {authState.isAuthenticated && (
-        <div className="logout">
+        <div className={styles.logout}>
           <button onClick={logout}>Logout</button>
         </div>
       )}
