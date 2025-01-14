@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useChat } from "./ChatProvider.jsx";
+import RenderProfileImage from "./RenderProfileImage.jsx";
 
 import { useAuth } from "../utils/useAuth";
 
@@ -11,6 +12,7 @@ function AllChats() {
   const [chats, setChats] = useState([]);
   const { chatId } = useParams();
   const { sentMessage } = useChat();
+  const isMobile = window.innerWidth <= 768;
 
   async function getChats() {
     const token = localStorage.getItem("accessToken");
@@ -54,74 +56,9 @@ function AllChats() {
 
       {chats &&
         chats.map((chat) => (
-          <div className={styles.chatContainer} key={chat.id}>
-            <Link to={`/chats/${chat.id}`} className={styles.linkContainer}>
-              {chat.profileImage ? (
-                <div>
-                  <img
-                    src={"http://localhost:4100/" + chat.profileImage}
-                    alt=""
-                  />
-                </div>
-              ) : (
-                (() => {
-                  let memberIds = [];
-                  // Loop through messages in reverse order
-                  for (let i = chat.messages.length - 1; i >= 0; i--) {
-                    if (!memberIds.includes(chat.messages[i].userId)) {
-                      if (chat.messages[i].userId !== authState.user.id) {
-                        memberIds.push(chat.messages[i].userId);
-                      }
-                    }
-                    if (memberIds.length === 2) {
-                      break; // Stop once we have 2 unique members
-                    }
-                  }
-                  if (memberIds.length < 2) {
-                    chat.members.forEach((member) => {
-                      if (
-                        member.id !== authState.user.id &&
-                        !memberIds.includes(member.id) &&
-                        memberIds.length < 2
-                      ) {
-                        memberIds.push(member.id);
-                      }
-                    });
-                  }
-
-                  if (memberIds.length === 0 && chat.members.length === 1) {
-                    memberIds.push(chat.members[0].id);
-                  }
-
-                  // Use .find() to get the member data
-                  const selectedMembers = memberIds
-                    .map((memberId) =>
-                      chat.members.find((member) => member.id === memberId)
-                    )
-                    .filter((member) => member !== undefined);
-
-                  return (
-                    <div className={styles.profileImageContainer}>
-                      {selectedMembers.map((member, index) => (
-                        <img
-                          key={member.id}
-                          className={`${styles.profileImage} ${
-                            styles["profileImage" + index]
-                          } ${
-                            selectedMembers.length === 1 ? styles.single : null
-                          }`}
-                          src={
-                            member.profileImage
-                              ? "http://localhost:4100/" + member.profileImage
-                              : "/icons/profile.svg"
-                          }
-                          alt=""
-                        />
-                      ))}
-                    </div>
-                  );
-                })()
-              )}
+          <Link to={`/chats/${chat.id}`} className={`${styles.linkContainer} ${styles.chatContainer}`} key={chat.id}>
+          
+              <RenderProfileImage chat={chat} authState={authState} size={ isMobile ? 55 : 80}/>
               <div className={styles.chatNamesAndMessage}>
                 {chat.name ? (
                   <div className={styles.chatNames}>
@@ -161,7 +98,6 @@ function AllChats() {
                 <div className={styles.latestMessage}>
                   {chat && chat.messages && chat.messages.length > 0 ? (
                     <>
-                      
                       <p>
                         {authState.user &&
                         chat.messages[chat.messages.length - 1].userId ===
@@ -173,21 +109,28 @@ function AllChats() {
                                 chat.messages[chat.messages.length - 1].userId
                             ).firstname + ":"}
                       </p>
-                      
-                        {chat.messages[chat.messages.length - 1].files.length >
-                        0
-                          ? <p>"sent a file" </p>
-                          : chat.messages[chat.messages.length - 1].content==="LIKEISTRUEabcdefghijklm" ? (<img className={styles.likeImage} src="/icons/like.svg"/>) : 
-                          <p>{chat.messages[chat.messages.length - 1].content}</p>}
-                     
+
+                      {chat.messages[chat.messages.length - 1].files.length >
+                      0 ? (
+                        <p>"sent a file" </p>
+                      ) : chat.messages[chat.messages.length - 1].content ===
+                        "LIKEISTRUEabcdefghijklm" ? (
+                        <img
+                          className={styles.likeImage}
+                          src="/icons/like.svg"
+                        />
+                      ) : (
+                        <p>{chat.messages[chat.messages.length - 1].content}</p>
+                      )}
                     </>
                   ) : (
                     ""
                   )}
                 </div>
               </div>
-            </Link>
-          </div>
+          
+         
+          </Link>
         ))}
     </div>
   );
