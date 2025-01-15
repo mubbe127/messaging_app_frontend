@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
+
 import { useAuth } from "../utils/useAuth";
 import CreateMessage from "./CreateMessage";
 import Messages from "./Messages";
@@ -13,7 +13,7 @@ import styles from "./Chat.module.css";
 function Chat() {
   const [chat, setChat] = useState({ members: [], messages: [] });
   const { authState } = useAuth();
-  const { sentMessage } = useChat();
+  const { sentMessage, setSentMessage, viewedChatIds, setViewedChatIds } = useChat();
   const [showMembers, setShowMembers] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [editChat, setEditChat] = useState(false);
@@ -21,6 +21,7 @@ function Chat() {
   const optionsRef = useRef(null);
   const displayMemberRef = useRef(null);
   const navigate = useNavigate();
+  
   const goBack = () => {
     navigate(-1); // Navigates to the previous page
   };
@@ -45,7 +46,7 @@ function Chat() {
   }
   useEffect(() => {
     getChat();
-  }, [sentMessage, chatId]);
+  }, [sentMessage,chatId]);
 
   function displayMembers(e) {
     if (
@@ -56,11 +57,49 @@ function Chat() {
     }
   }
   function displayOptions(e) {
-    
     if (optionsRef.current && !optionsRef.current.contains(e.target)) {
       setShowOptions(false);
     }
   }
+
+  useEffect(() => {
+    async function updateView() {
+      try {
+       
+        const token = localStorage.getItem("accessToken")
+        const response = await fetch(
+          `http://localhost:4100/api/messages/viewed`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json", // Add your API key to the headers
+            },
+            body: JSON.stringify({
+              chatId: chat.id,
+              userId: authState.user.id,
+            }),
+          }
+        );
+        if (!response.ok) {
+          const error = await response.json();
+          throw error;
+        }
+        const data = await response.json();
+        console.log("successfully updated viewed messages", data);
+    
+      } catch (error) {
+        console.log(error);
+      }
+    }
+      if(chat.id && authState.isAuthenticated){
+      updateView();
+      setViewedChatIds([...viewedChatIds, chat.id])
+    }
+    
+  }, [chat.id, authState, sentMessage]);
+
+
   return (
     <>
       {chat && !(isMobile && editChat) && authState.isAuthenticated && (
@@ -74,10 +113,15 @@ function Chat() {
                 </div>
               )}
               {chat.profileImage ? (
-              <div className={`${styles.profileImageContainer} ${styles.single}`}>
-                            <img src={"http://localhost:4100/" + chat.profileImage} className={`${
-                                      styles.profileImage0} ${styles.single}`} alt="" />
-                          </div>
+                <div
+                  className={`${styles.profileImageContainer} ${styles.single}`}
+                >
+                  <img
+                    src={"http://localhost:4100/" + chat.profileImage}
+                    className={`${styles.profileImage0} ${styles.single}`}
+                    alt=""
+                  />
+                </div>
               ) : (
                 (() => {
                   let memberIds = [];
@@ -266,7 +310,7 @@ function Chat() {
           <CreateMessage chatId={chatId} />
         </div>
       )}
-      {editChat && <EditChat chat={chat } setEditChat={setEditChat}/>}
+      {editChat && <EditChat chat={chat} setEditChat={setEditChat} />}
     </>
   );
 }
