@@ -10,12 +10,12 @@ import { ChatProvider } from "../components/ChatProvider";
 
 function ChatPageMobile() {
   const { authState } = useAuth();
+  
   const isMobile = window.innerWidth <= 768;
 
   return (
     <>
       <ChatProvider>
-       
         <div className={styles.chatPageContainer}>
           <Outlet />
         </div>

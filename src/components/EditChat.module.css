@@ -1,0 +1,1020 @@
+.editChatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0 20px;
+}
+
+.profileImageContainer {
+  left: 10px;
+  top: 10px;
+}
+.profileImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileImage0 {
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  cursor: pointer;
+  z-index: 2;
+  border: 3px solid white;
+  background-color: white;
+  margin-top: 15px;
+}
+
+/* Överväg att förenkkla klassnamn */
+.profileImage0.single {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 2px solid rgba(0, 0, 0, 0.42);
+  margin: 0;
+}
+.profileImage1 {
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  cursor: pointer;
+  margin-left: -25px;
+  margin-top: -15px;
+}
+.chatNamesContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.chatNames {
+  display: flex;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 3px;
+}
+
+.chatMembersContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.changeChatName {
+  margin-top: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.changeChatName:hover {
+  background-color: rgba(128, 128, 128, 0.073);
+}
+
+.changeChatName div {
+  border-radius: 80px;
+  background-color: rgba(128, 128, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+}
+.changeProfileImage {
+  margin-top: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.changeProfileImage:hover {
+  background-color: rgba(128, 128, 128, 0.073);
+}
+.changeProfileImage div {
+  border-radius: 80px;
+  background-color: rgba(128, 128, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+}
+.profileImageFileInput {
+  display: none;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.heading:hover {
+  background-color: rgba(241, 235, 235, 0.338);
+}
+.heading h3 {
+  font-size: 1.4rem;
+}
+
+.heading img {
+  display: block;
+  object-fit: contain;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+}
+
+.chatMemberContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  justify-content: space-between;
+  padding: 5px 10px;
+  font-size: 1.1rem;
+}
+
+.chatMember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatMemberContainer .profileImage {
+  object-fit: cover;
+  width: 55px;
+  height: 55px;
+  border-radius: 80px;
+  cursor: pointer;
+  z-index: 2;
+  border: 2px solid rgb(151, 143, 143);
+  background-color: white;
+}
+
+.optionsButtonContainer {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.optionsButtonContainer img:hover {
+  background-color: rgba(128, 128, 128, 0.201);
+}
+
+.optionsButtonContainer img {
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 5px 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.optionsContainer {
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 20px;
+  z-index: 5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.optionsContainer a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.2rem;
+
+  padding: 10px 30px;
+}
+
+.optionsContainer a:hover {
+  background-color: rgba(229, 254, 246, 0.345);
+}
+
+.addMember {
+  display: flex;
+  gap: 10px;
+  padding: 5px 10px;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.addMember:hover {
+  background-color: rgba(241, 235, 235, 0.338);
+}
+
+.addMember img {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+
+.addMember .iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border: 2px solid rgb(241, 235, 235);
+  background-color: rgba(241, 235, 235, 0.338);
+  border-radius: 80px;
+}
+
+.addMember p {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.chatNameFormContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  background-color: #80829b3b;
+}
+
+.chatNameFormContainer form {
+  padding: 20px 30px;
+  padding-top: 10px;
+  width: min(700px, 90%);
+  background-color: white;
+  border: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 8px;
+  z-index: 8;
+}
+
+.chatNameFormContainer h3 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.chatNameFormContainer input {
+  box-sizing: border-box;
+  height: min(100px, 5vh);
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background-color: rgba(128, 128, 128, 0.107);
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.chatNameFormContainer .buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  padding: 10px 0;
+}
+.chatNameFormContainer .buttonContainer .save {
+  width: 49%;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.chatNameFormContainer .buttonContainer .cancel {
+  width: 49%;
+  background-color: #80829b;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.chatNameFormContainer .buttonContainer button:hover {
+  opacity: 0.6;
+  color: black;
+}
+
+.addMemberContainerBackground {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.addMemberContainer {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: min(700px, 90vh);
+  padding: 20px 30px;
+  width: min(600px, 90%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+}
+.addMemberContainer h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.inputContainer {
+  position: relative;
+}
+.searchIconContainer {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+}
+.searchIconContainer img {
+  width: 25px;
+  height: 25px;
+}
+
+.addMemberContainer input {
+  width: 500px;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+
+  border-radius: 10px;
+  padding: 10px 42px;
+  border: 2px rgb(169, 166, 166) solid;
+}
+
+.addedMembersContainer {
+  min-height: 10%;
+  width: 500px;
+  padding: 20px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.noAddedMemberContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.1rem;
+
+  color: rgba(0, 0, 0, 0.747);
+}
+
+.addedMemberContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.addedMemberContainer .imageContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.addedMemberContainer .profileImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.addedMemberContainer .cancelIcon {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 80px;
+  padding: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.searchContainer {
+  width: 500px;
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.searchedUserContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+.searchedUserContainer:hover {
+  background-color: rgba(128, 128, 128, 0.123);
+}
+.searchedUserContainer .selectIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchedUserContainer .selectIcon img {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+
+.searchedUserProfile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.2rem;
+}
+.searchedUserProfile img {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 80px;
+}
+
+.addMembersButton {
+  width: 500px;
+  border: none;
+  outline: none;
+  background-color: #646cff;
+  color: white;
+  font-size: 1.4rem;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.disableAddMembersButton {
+  width: 500px;
+  border: none;
+  outline: none;
+  background-color: #d5d5d8;
+  color: rgba(0, 0, 0, 0.564);
+
+  font-size: 1.4rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .editChatContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 50px 20px;
+  }
+
+  .chatNamesContainer {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+  }
+
+  .chatNames {
+    display: flex;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 3px;
+  }
+
+  .chatMembersContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .changeChatName {
+    margin-top: 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .changeChatName:hover {
+    background-color: rgba(128, 128, 128, 0.073);
+  }
+
+  .changeChatName div {
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+  }
+
+  .changeChatName div img {
+
+    width: 23px;
+    width: 23px;    
+  }
+  .changeProfileImage {
+    margin-top: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .changeProfileImage:hover {
+    background-color: rgba(128, 128, 128, 0.073);
+  }
+  .changeProfileImage div {
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+  }
+
+  .changeProfileImage div img {
+
+    background-color: rgba(128, 128, 128, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 23px;
+    width: 23px;
+  }
+  .profileImageFileInput {
+    display: none;
+  }
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+  .heading:hover {
+    background-color: rgba(241, 235, 235, 0.338);
+  }
+  .heading h3 {
+    font-size: 1.1rem;
+  }
+
+  .heading img {
+    display: block;
+    object-fit: contain;
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+  }
+
+  .chatMemberContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    justify-content: space-between;
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+
+  .chatMember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chatMemberContainer .profileImage {
+    object-fit: cover;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    border: 2px solid rgb(151, 143, 143);
+    background-color: white;
+  }
+
+  .optionsButtonContainer {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  .optionsButtonContainer img:hover {
+    background-color: rgba(128, 128, 128, 0.201);
+  }
+
+  .optionsButtonContainer img {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 5px 5px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .optionsContainer {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    z-index: 5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .optionsContainer a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.2rem;
+
+    padding: 10px 30px;
+  }
+
+  .optionsContainer a:hover {
+    background-color: rgba(229, 254, 246, 0.345);
+  }
+
+  .addMember {
+    display: flex;
+    gap: 10px;
+    padding: 5px 10px;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  .addMember:hover {
+    background-color: rgba(241, 235, 235, 0.338);
+  }
+
+  .addMember img {
+    object-fit: cover;
+    width: 28px;
+    height: 28px;
+    z-index: 2;
+  }
+
+  .addMember .iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 2px solid rgb(241, 235, 235);
+    background-color: rgba(241, 235, 235, 0.338);
+    border-radius: 50%;
+  }
+
+  .addMember p {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .chatNameFormContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-color: #80829b3b;
+  }
+
+  .chatNameFormContainer form {
+    padding: 20px 30px;
+    padding-top: 10px;
+    width: min(700px, 90%);
+    background-color: white;
+    border: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 8px;
+    z-index: 8;
+  }
+
+  .chatNameFormContainer h3 {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .chatNameFormContainer input {
+    box-sizing: border-box;
+    height: min(100px, 5vh);
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    background-color: rgba(128, 128, 128, 0.107);
+    border-radius: 8px;
+    padding-left: 10px;
+  }
+
+  .chatNameFormContainer .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    padding: 10px 0;
+  }
+  .chatNameFormContainer .buttonContainer .save {
+    width: 49%;
+    background-color: #646cff;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .chatNameFormContainer .buttonContainer .cancel {
+    width: 49%;
+    background-color: #80829b;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .chatNameFormContainer .buttonContainer button:hover {
+    opacity: 0.6;
+    color: black;
+  }
+
+  .addMemberContainerBackground {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+  }
+
+  .addMemberContainer {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 50x;
+  }
+
+  .addMemberContainer .previousButtonContainer, .previousButtonContainer2 {
+    background-color: rgba(160, 163, 162, 0.233);
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%; 
+    padding: 5px;   
+    cursor: pointer;
+
+  }
+
+  .addMemberContainer .previousButtonContainer, .previousButtonContainer2 {
+
+    width: 22px;
+    height:22px;
+  }
+
+  .addMemberContainer h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    margin-top: 20px    ;
+  }
+
+  .inputContainer {
+    position: relative;
+  }
+  .searchIconContainer {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+  }
+  .searchIconContainer img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .addMemberContainer input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+
+    border-radius: 10px;
+    padding: 10px 42px;
+    border: 2px rgb(169, 166, 166) solid;
+  }
+
+  .addedMembersContainer {
+    min-height: 10%;
+    width: 100%;;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 30px 0;
+  }
+
+  .noAddedMemberContainer {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.1rem;
+
+    color: rgba(0, 0, 0, 0.747);
+  }
+
+  .addedMemberContainer {
+    display: flex;
+   
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .addedMemberContainer .imageContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .addedMemberContainer .profileImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+  .addedMemberContainer .cancelIcon {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 80px;
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .searchContainer {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .searchedUserContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 10px;
+    border-radius: 8px;
+  }
+  .searchedUserContainer:hover {
+    background-color: rgba(128, 128, 128, 0.123);
+  }
+  .searchedUserContainer .selectIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .searchedUserContainer .selectIcon img {
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+  }
+
+  .searchedUserProfile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.2rem;
+  }
+  .searchedUserProfile img {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 80px;
+  }
+
+  .addMembersButton {
+    width: 90%;    border: none;
+    outline: none;
+    background-color: #646cff;
+    color: white;
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 50px;
+  }
+
+  .disableAddMembersButton {
+    width: 90%;
+    border: none;
+    outline: none;
+    background-color: #d5d5d8;
+    color: rgba(0, 0, 0, 0.564);
+
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+}

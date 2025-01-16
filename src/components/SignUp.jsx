@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
 
 import styles from "./SignUp.module.css";
+import domainUrl from "../utils/domain";
 
 
 function SignUp() {
@@ -21,7 +22,7 @@ function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch(`http://localhost:4100/api/users/`, {
+    fetch(`${domainUrl}/api/users/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Add this header

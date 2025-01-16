@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Logout from "./Logout";
-import LoginLink from "./LoginLink";
 import styles from "./Header.module.css";
+import { useAuth } from "../utils/useAuth.jsx";
 
 function Header() {
+  const { authState, setAuthState } = useAuth();
+
+
   return (
     <>
       <div className={styles.header}>
         <div className={styles.heading}>
-          <p>Welcome to Mobes Blog</p>
+          <p>Messenger</p>
         </div>
         <div className={styles.buttonUsernameContainer}>
-            <div className={styles.username}><p>{user && user.username}</p></div>
-          <div className={styles.buttonContainer}>
-            <Logout setUser={setUser} setToken={setToken}/>
             
+          <div className={styles.buttonContainer}>
+
+            {!authState.isAuthenticated && <Link to="/signup" className={styles.signupLink}>Sign up</Link> }
+            <Logout />
           </div>
         </div>
       </div>

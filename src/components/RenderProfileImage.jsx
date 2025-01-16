@@ -1,10 +1,11 @@
+import domainUrl from "../utils/domain";
 import styles from "./RenderProfileImage.module.css"
 
 function RenderProfileImage({ chat, authState, size }) {
   return chat && chat.profileImage ? (
     <div className={styles.profileImageContainer} style={{width:size + "px", height:size+"px"}}>
       <img
-        src={"http://localhost:4100/" + chat.profileImage}
+        src={domainUrl + "/" + chat.profileImage}
         className={styles.profileImageSingle}
         alt=""
         style={{width:size + "px", height:size + "px"}}
@@ -12,7 +13,7 @@ function RenderProfileImage({ chat, authState, size }) {
     </div>
   ) : chat && (
     (() => {
-      console.log(chat)
+     
       let memberIds = [];
       // Loop through messages in reverse order
       for (let i = chat.messages.length - 1; i >= 0; i--) {
@@ -60,7 +61,7 @@ function RenderProfileImage({ chat, authState, size }) {
               }}
               src={
                 member.profileImage
-                  ? "http://localhost:4100/" + member.profileImage
+                  ? domainUrl + "/" + member.profileImage
                   : "/icons/profile.svg"
               }
               alt=""

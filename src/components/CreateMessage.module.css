@@ -1,0 +1,309 @@
+.createMessageContainer {
+  position: relative;
+  width: 100%;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  
+}
+
+
+.createMessageContainer form {
+    flex: 1;
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    justify-content: space-around;
+
+  }
+
+.messageInputContainer {
+  flex: 1;
+  display: flex;
+  background-color: rgb(238, 238, 238);
+  border-radius: 30px;
+  
+}
+.messageInputContainer.activeFile {
+    padding-top: 100px;
+    box-sizing: content-box;
+
+}
+
+.createMessageContainer .messageInput {
+  height: 50px;
+  padding-top: 12px;
+  box-sizing: border-box;
+  padding-left: 25px;
+  flex: 1;
+  font-size: 1.4rem;
+  border-radius: 30px;
+  resize: none;
+  outline: none;
+  background-color: rgb(238, 238, 238);
+  border: none;
+}
+
+
+
+.createMessageContainer .sendButton {
+  background-color: white;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.createMessageContainer .sendButton img{
+ width: 45px;
+ height: 45px;
+  
+}
+.createMessageContainer .likeButton {
+  background-color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+
+}
+
+.createMessageContainer .likeButton img {
+  width: 40px;
+ height: 40px;
+}
+
+.createMessageContainer .labelIcon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+.createMessageContainer .labelIcon img {
+  object-fit: contain;
+  width: 40px;
+  height: 40px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileContainer {
+
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  
+}
+
+.fileContainer > div:not(.image) {
+
+  display: flex;
+  align-items: center;
+  height: 60x;
+  background-color: rgba(128, 128, 128, 0.244);
+  padding: 10px 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+}
+.fileContainer img {
+
+  width: 60px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.fileContainer .file.image .fileImage{
+
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.fileContainer .removeButtonContainer {
+
+  position: absolute;
+  top:-5px;
+  right: -5px;
+  cursor: pointer;
+}
+
+.fileContainer .removeButtonContainer img {
+ 
+ 
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+
+
+}
+
+
+@media (max-width: 600px) {
+
+  .createMessageContainer {
+    position: relative;
+    width: 100%;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+  }
+  
+  .createMessageContainer form {
+    width: 100%;
+    display: flex;
+    align-items: end;
+    gap: 20px;
+    
+  }
+
+  .messageInputContainer {
+  flex: 1;
+  display: flex;
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+  
+}
+.messageInputContainer.activeFile {
+    padding-top: 80px;
+    box-sizing: border-box;
+
+}
+
+.createMessageContainer .messageInput {
+  height: 30px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  padding-left: 15px;
+  flex: 100%;
+  font-size: 1rem;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  resize: none;
+  outline: none;
+  background-color: rgb(238, 238, 238);
+  border: none;
+}
+  
+  .createMessageContainer .sendButton {
+    background-color: white;
+    outline: none;
+    border: none;
+    height: 30px;
+    width: 30px;
+  }
+  
+  .createMessageContainer .sendButton img{
+   width: 30px;
+   height: 30px;
+    
+  }
+  .createMessageContainer .likeButton {
+    background-color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .createMessageContainer .likeButton img {
+    width: 22px;
+    height: 22px;
+   
+  }
+  
+  .createMessageContainer .labelIcon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width:30px;
+    height: 30px;
+  }
+  .createMessageContainer .labelIcon img {
+    object-fit: contain;
+    width: 25px;
+    height: 25px;
+  }
+  
+  .fileInput {
+    display: none;
+  }
+  
+  .fileContainer {
+    position: absolute;
+    top: 10px;
+    left: 75px;
+  }
+  
+  .fileContainer > div:not(.image) {
+  
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background-color: rgba(128, 128, 128, 0.244);
+    padding: 5px 10px;
+    border-radius: 10px;
+    gap: 5px;
+  
+  }
+
+  .fileContainer p {
+
+    max-width: 90px;
+    overflow: hidden;
+    max-height: 50px;
+
+  }
+  .fileContainer img {
+  
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  .fileContainer .file.image .fileImage{
+  
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+
+  .fileContainer .removeButtonContainer {
+
+    position: absolute;
+    top:-5px;
+    right: -5px;
+    cursor: pointer;
+  }
+  
+  .fileContainer .removeButtonContainer img {
+   
+   
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+  
+}
+}

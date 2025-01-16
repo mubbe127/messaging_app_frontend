@@ -5,6 +5,7 @@ import formatDate from "../utils/utils";
 
 import styles from "./Messages.module.css";
 import { useChat } from "./ChatProvider";
+import domainUrl from "../utils/domain";
 
 function Messages({ chat }) {
   const { authState } = useAuth();
@@ -19,8 +20,7 @@ function Messages({ chat }) {
     if (container) {
       setTimeout(()=>{
         container.scrollTop = container.scrollHeight;
-
-      },10)
+      }, 10)
       
     }
   }, [chat, sentMessage, reRender]);
@@ -96,7 +96,7 @@ function Messages({ chat }) {
               )}
               {profileImage && (
                 <div className={`${styles.profileImage} ${!memberMap[message.userId]?.profileImage ? styles.iconProfile : null} `}>
-                  <img src={memberMap[message.userId]?.profileImage ? "http://localhost:4100/" + memberMap[message.userId]?.profileImage : "/icons/profile.svg" } alt="" />
+                  <img src={memberMap[message.userId]?.profileImage ? domainUrl + memberMap[message.userId]?.profileImage : "/icons/profile.svg" } alt="" />
                 </div>
               )}
               <div className={styles.files}>
@@ -110,7 +110,7 @@ function Messages({ chat }) {
                         className={`${styles.file} ${styles.image}`}
                       >
                         <img
-                          src={"http://localhost:4100/" + file.filePath}
+                          src={domainUrl + "/" +file.filePath}
                           alt=""
                           onLoad={()=>setReRender(true)}
                         />
@@ -120,7 +120,7 @@ function Messages({ chat }) {
                     return (
                       <Link
                         key={file.id}
-                        to={"http://localhost:4100/" + file.filePath}
+                        to={domainUrl +"/" + file.filePath}
                         className={styles.document}
                       >
                         <img
@@ -140,7 +140,7 @@ function Messages({ chat }) {
                     return (
                       <Link
                         key={file.id}
-                        to={"http://localhost:4100/" + file.filePath}
+                        to={domainUrl +"/"+ file.filePath}
                         className={styles.document}
                       >
                         <img
@@ -160,7 +160,7 @@ function Messages({ chat }) {
                     return (
                       <Link
                         key={file.id}
-                        to={"http://localhost:4100/" + file.filePath}
+                        to={domainUrl +"/" + file.filePath}
                         className={styles.document}
                       >
                         <img

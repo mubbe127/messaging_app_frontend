@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";                                      
 import { AuthProvider } from "./utils/useAuth.jsx";
 import AllChats from "./components/AllChats.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -11,6 +11,7 @@ import CreateChat from "./components/CreateChat.jsx";
 import CreateMessage from "./components/CreateMessage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import "./App.css";
+
 
 function App() {
 

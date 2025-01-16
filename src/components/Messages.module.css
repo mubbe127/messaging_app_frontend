@@ -1,0 +1,296 @@
+.p {
+  margin: 0;
+  padding: 0;
+}
+
+.messagesContainer {
+  padding: 10px 20px;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.messageContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding: 0 60px;
+}
+
+.content {
+  display: flex;
+}
+
+.creator .content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content p {
+  display: inline;
+  background-color: rgba(176, 168, 168, 0.13);
+  color: black;
+  padding: 5px 15px;
+  font-size: 1.4rem;
+  border-radius: 15px;
+}
+
+.creator .content p {
+  background-color: rgb(73, 31, 240);
+  color: white;
+}
+
+.creator .likeContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+
+  }
+
+.creator .likeContainer img {
+    display: block;
+  
+}
+
+.likeContainer {
+
+    margin: 10px 0;
+    padding: 0px 10px;
+}
+
+
+
+.user {
+  margin-bottom: 0px;
+  font-size: 1.1rem;
+  padding-left: 8px;
+  margin-bottom: 10px;
+}
+
+.creator .user {
+  display: none;
+}
+
+.date {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: grey;
+
+  margin-bottom: 35px;
+}
+
+.file {
+}
+
+.creator .files .image {
+  display: flex;
+  justify-content: end;
+  margin: 20px 0;
+}
+
+.files .image img {
+  object-fit: cover;
+  max-width: 60%;
+  max-height: 800px;
+}
+.files .document {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.creator .files .document {
+  align-items: end;
+}
+
+.files .document .icon {
+  object-fit: contain;
+  width: max(5%, 70px);
+  height: max(5%, 70px);
+}
+
+.profileImage {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  display: flex;
+}
+
+.profileImage img {
+  object-fit: cover;
+  height: 50px;
+  width: 50px;
+  border-radius: 80px;
+}
+
+.iconProfile img {
+  object-fit: contain;
+  width: 40px;
+  height: 35px;
+  border-radius: 60px;
+}
+
+.creator .profileImage {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .messagesContainer {
+    padding: 10px 10px;
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .messageContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 0 40px;
+  }
+
+  .creator.messageContainer {
+
+    padding: 0;
+  }
+
+  .content {
+    display: flex;
+  }
+
+  .creator .content {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content p {
+    display: inline;
+    background-color: rgba(176, 168, 168, 0.13);
+    color: black;
+    padding: 5px 10px;
+
+    font-size: 0.9rem;
+    border-radius: 15px;
+  }
+
+  .creator .content p {
+    background-color: rgb(73, 31, 240);
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  .user {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    padding-left: 8px;
+    
+  }
+
+.creator .likeContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+.creator .likeContainer img {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+.likeContainer img {
+
+    width: 30px;
+    height: 30px;
+}
+
+  .creator .user {
+    display: none;
+  }
+
+  .date {
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: grey;
+    margin: 20px auto;;
+  }
+
+  .file {
+  }
+
+  .creator .files .image {
+    display: flex;
+    justify-content: end;
+    margin: 20px 0;
+  }
+
+  .files .image img {
+    object-fit: contain;
+    max-width: 60%;
+    max-height: 800px;
+  }
+  .files .document {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  
+  }
+
+  .creator .files .document {
+    align-items: end;
+   
+  }
+
+  .files .document .icon {
+    object-fit: contain;
+    width: max(3%, 40px);
+    height: max(3%, 40px);
+  }
+
+  .files .document p {
+    margin-top: 2px;
+    font-size: 0.9rem;  
+    max-width: 60%;
+    text-align: justify;
+  }
+
+  .profileImage {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    display: flex;
+  }
+
+  .profileImage img {
+    object-fit: cover;
+    height: 35px;
+    width: 35px;
+    border-radius: 80px;
+  }
+
+  .iconProfile img {
+    object-fit: contain;
+
+    height: 35px;
+    border-radius: 60px;
+  }
+
+  .creator .profileImage {
+    display: none;
+  }
+}

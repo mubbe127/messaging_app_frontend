@@ -1,0 +1,12 @@
+
+.signupLinkContainer {
+
+ display: flex;
+ justify-content: center;
+    
+}
+
+.signupLinkContainer a {
+font-size: 1.4rem;
+cursor: pointer;
+}

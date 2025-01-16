@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/useAuth.jsx";
 import styles from "./Login.module.css";
+import domainUrl from "../utils/domain.js";
 
 function Login({ setUser, setToken }) {
   const [username, setUsername] = useState("");
@@ -10,10 +11,6 @@ function Login({ setUser, setToken }) {
   const [isLoading, setIsLoading] = useState(false);
   const { authState, setAuthState } = useAuth();
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  
-  
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,7 +18,7 @@ function Login({ setUser, setToken }) {
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:4100/api/users/login`, {
+      const response = await fetch(`${domainUrl}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Add your API key to the headers
@@ -33,18 +30,20 @@ function Login({ setUser, setToken }) {
       });
 
       if (!response.ok) {
-        throw new Error(`Server responded with status ${response.status}`);
+        const error= await response.json()
+        throw error
       }
 
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken)
-      setAuthState({ isAuthenticated: true, loading: false });
+      setAuthState({ isAuthenticated: true, loading: false, user:data.user });
       // Redirect after storing the token
       console.log(data)
+      console.log(authState)
     } catch (error) {
       setError("Login failed. Please try again.");
-      console.error("Error fetching from post API:", error);
+      console.log("Error fetching from post API:", error);
     } finally {
       setIsLoading(false);
     }

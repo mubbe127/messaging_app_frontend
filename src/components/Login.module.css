@@ -1,4 +1,40 @@
 .loginFormContainer {
-
-    
-}
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    padding: max(20px, 3%);
+    width: min(600px, 90%);
+    margin: 150px auto;
+    margin-bottom: 60px ;
+    background-color: white;
+  }
+  .loginFormContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .loginFormContainer input {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.4rem;
+    width:100%;
+    border: none;
+    background-color: #535bf21a;
+  }
+  
+  .loginFormContainer button {
+    border-radius: 8px;
+    font-size: 1.4rem;
+    padding: 10px;
+    width:100%;
+    border: none;
+    background-color: #535bf2;
+    color: white;
+    cursor: pointer;
+  }
+  .loginFormContainer button:hover {
+    background-color: #535bf2b9;
+  }
+  

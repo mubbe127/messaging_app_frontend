@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 import { useAuth } from "../utils/useAuth";
+import domainUrl from "../utils/domain";
 
 function Profile() {
   const { userId } = useParams();
@@ -23,7 +24,7 @@ function Profile() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4100/api/users/${userId}`,
+        `${domainUrl}/api/users/${userId}`,
         {
           method: "GET",
           headers: {
@@ -36,7 +37,7 @@ function Profile() {
         throw new Error("Failed to fetch user data");
       }
       const data = await response.json();
-      console.log(data); // Handle or set state with fetched data
+     // Handle or set state with fetched data
       setProfile(data);
       setUsername(data.username);
       setFirstname(data.firstname);
@@ -60,14 +61,14 @@ function Profile() {
       formData.append("lastname", lastname);
       formData.append("firstname", firstname);
       formData.append("email", email);
-      console.log(file);
+  
 
       if (file) {
         formData.append("file", file); // Append the file if it exists
       }
-      console.log(formData);
+     
       const response = await fetch(
-        `http://localhost:4100/api/users/${userId}`,
+        `${domainUrl}/api/users/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -82,7 +83,7 @@ function Profile() {
         throw error;
       }
       const data = await response.json();
-      console.log(data) - fetchData();
+      
       setEditProfile(false);
     } catch (error) {
       console.log(error);
@@ -99,7 +100,7 @@ function Profile() {
                 <img
                   src={
                     profile.profileImage
-                      ? "http://localhost:4100/" + profile.profileImage
+                      ? domainUrl + "/"+ profile.profileImage
                       : "/icons/profile.svg"
                   }
                   alt=""
@@ -145,7 +146,7 @@ function Profile() {
                 <img
                   src={
                     profile.profileImage
-                      ? "http://localhost:4100/" + profile.profileImage
+                      ? domainUrl + "/" + profile.profileImage
                       : "/icons/profile.svg"
                   }
                   alt=""
@@ -207,9 +208,7 @@ function Profile() {
               Save
             </button>
           </div>
-          <div className={styles.previousButtonContainer}>
-            <img src="/icons/previous.svg" alt="" onClick={goBack} />
-          </div>
+
         </div>
         
       )}

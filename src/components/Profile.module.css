@@ -1,0 +1,205 @@
+.profileContainer, .editProfile {
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: min(800px, 100%);
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+  margin: 0 auto;
+  gap: 20px;
+  font-size: 1.3rem;
+}
+
+.profileImage {
+  margin-top: 30px;
+}
+
+.profileImage img {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.editButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.previousButtonContainer {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.previousButtonContainer img {
+  width: 40px;
+  height: 40px;
+}
+.editButton button {
+  cursor: pointer;
+  border: none;
+  font-size: 1.3rem;
+  padding: 10px 10px;
+  color: aliceblue;
+  background-color: rgba(0, 13, 255, 0.833);
+}
+
+.editProfile input {
+  width: 80%;
+  height: 35px;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  padding: 0 5px;
+}
+
+.fileContainer {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.nameInputContainer {
+  display: flex;
+  width: 80%;
+  gap: 2%;
+}
+
+.nameInputContainer input {
+  box-sizing: border-box;
+  width: 49%;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 2%;
+  width: 80%;
+}
+
+.buttonContainer .saveButton {
+  border: none;
+  font-size: 1.3rem;
+  padding: 10px 10px;
+  color: aliceblue;
+  background-color: rgba(0, 13, 255, 0.833);
+  width: 49%;
+  cursor: pointer;
+}
+.buttonContainer .cancelButton {
+  border: none;
+  font-size: 1.3rem;
+  padding: 10px 10px;
+  color: aliceblue;
+  background-color: rgba(83, 83, 83, 0.833);
+  width: 49%;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .profileContainer, .editProfile {
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width:100vw;
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
+    gap: 20px;
+    font-size: 1.3rem;
+  }
+
+  .profileImage {
+    margin-top: 30px;
+  }
+
+  .profileImage img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+  }
+
+  .editButton {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+   
+  }
+
+  .previousButtonContainer {
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    cursor: pointer;
+  }
+
+  .previousButtonContainer img {
+    width: 23px;
+    height: 23px;
+  }
+  .editButton button {
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    padding: 10px 10px;
+    color: aliceblue;
+    background-color: rgba(0, 13, 255, 0.833);
+  }
+
+  .editProfile input {
+    width: 80%;
+    height: 28px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    padding: 0 5px;
+  }
+
+  .fileContainer {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .nameInputContainer {
+    display: flex;
+    width: 80%;
+    gap: 3%;
+    box-sizing: border-box;
+  }
+
+  .nameInputContainer input {
+    box-sizing: border-box;
+    width: 48.5%;
+  }
+
+  .buttonContainer {
+    display: flex;
+    gap: 2%;
+    width: 80%;
+  }
+
+  .buttonContainer .saveButton {
+    border: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    color: aliceblue;
+    background-color: rgba(0, 13, 255, 0.833);
+    width: 49%;
+    cursor: pointer;
+  }
+  .buttonContainer .cancelButton {
+    border: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    color: aliceblue;
+    background-color: rgba(83, 83, 83, 0.833);
+    width: 49%;
+    cursor: pointer;
+  }
+}

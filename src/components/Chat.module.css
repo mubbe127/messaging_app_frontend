@@ -1,0 +1,553 @@
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 70%;
+  height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+ 
+
+}
+
+.header {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+
+.profileAndNamesContainer {
+  display: flex;
+  margin-left: 20px;
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.profileAndNamesContainer:hover {
+
+  background-color: rgba(128, 128, 128, 0.098);
+
+}
+
+.previousButtonContainer {
+
+  display: flex;
+  align-items: center;
+}
+
+.previousButtonContainer img {
+
+  height: 20px;
+  width: 20px;
+}
+
+.profileImageContainer {
+  left: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+
+}
+
+.profileImage0 {
+
+  object-fit: cover;
+  width: 55px;
+  height: 55px;
+  border-radius: 80px;
+  cursor: pointer;
+  z-index: 2;
+  border: 3px solid white;
+  background-color: white;
+  margin-top: 15px;
+}
+
+.profileImage0.single {
+  width: 65px;
+  height: 65px;
+  border-radius: 100px;
+  border: 2px solid rgba(0, 0, 0, 0.42);
+  margin:0;
+}
+.profileImage1 {
+  object-fit: cover;
+  width: 55px;
+  height: 55px;
+  border-radius: 80px;
+  cursor: pointer;
+  margin-left: -25px;
+  margin-top: -15px;
+
+} 
+.chatNamesContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin-left: 15px;
+
+}
+
+.chatNames {
+  display: flex;
+  gap: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 3px;
+}
+
+
+
+.editChatButton {
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.editChatButton:hover {
+  background-color: rgba(128, 128, 128, 0.139);
+}
+
+.membersContainerBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(240, 248, 255, 0.338);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+.membersContainer {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1.3rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: min(500px, 80%);
+  width: min(80%, 600px);
+  position: relative;
+ 
+}
+
+.membersContainer .heading {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.membersContainer .cancelContainer {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.memberContainer {
+  position: relative;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.memberContainer .memberLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.memberLink .name {
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.memberLink .profileImage img {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 80px;
+  cursor: pointer;
+  padding: 10px;
+}
+.memberLink:hover .profileImage img {
+  background-color: rgba(128, 128, 128, 0.32);
+}
+
+.memberContainer img.clickOptions {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  height: 20px;
+}
+.memberContainer img.clickOptions:hover {
+  background-color: rgba(128, 128, 128, 0.32);
+}
+.optionsContainer {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  z-index: 4;
+}
+
+.optionsContainer a {
+  padding: 10px 30px;
+}
+
+.optionsContainer a:hover {
+  background-color: rgba(240, 248, 255, 0.765);
+}
+
+.editChatContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 30%;
+  height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+
+  .chatContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    flex:1;
+    height: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .header {
+    padding-top: 5px;
+
+  }
+  .previousButtonContainer {
+
+    padding: 0 10px;
+  }
+
+  .profileAndNamesContainer {
+
+    margin-left: 0px;
+    padding: 0;
+  }
+  
+  .profileImageContainer {
+ 
+  width: 50px;
+  }
+  .profileImageContainer.single {
+   
+  }
+  
+  .profileImage0 {
+  
+    object-fit: cover;
+    width: 28px;
+    height:28px;
+    border-radius: 80px;
+    cursor: pointer;
+    z-index: 2;
+    border: 3px solid white;
+    background-color: white;
+  }
+  
+  .profileImage0.single {
+ 
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border: 2px solid rgba(0, 0, 0, 0.42);
+   
+  }
+  .profileImage1 {
+ 
+    object-fit: cover;
+    width: 28px;
+    height:28px;
+    border-radius: 80px;
+    cursor: pointer;
+    padding: 10px;
+  
+  }
+  
+  .chatNamesContainer {
+    margin-left: 5px;
+    margin-top: 3px;
+    gap: 2px;
+    display: flex;
+    align-items: center;
+  } 
+  
+  .chatNames {
+    display: flex;
+    gap: 3px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .chatNames {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .chatNames p {
+    margin-top: -5px;
+ 
+  }
+  .editChatButton {
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+  }
+  
+  .editChatButton:hover {
+    background-color: rgba(128, 128, 128, 0.139);
+  }
+  .editChatButton img {
+
+    width: 20px;
+    height: 20px;
+  }
+  
+  .membersContainerBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(240, 248, 255, 0.338);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+  }
+  
+  .membersContainer {
+    display: flex;
+    flex-direction: column;
+  
+    font-size: 1.3rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: min(500px, 80%);
+    width: min(80%, 600px);
+    position: relative;
+  }
+  
+  .membersContainer .heading {
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .membersContainer .cancelContainer {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+  
+  .memberContainer {
+    position: relative;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .memberContainer .memberLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .memberLink .name {
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  
+  .memberLink .profileImage img {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 80px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .memberLink:hover .profileImage img {
+    background-color: rgba(128, 128, 128, 0.32);
+  }
+  
+  .memberContainer img.clickOptions {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    height: 20px;
+  }
+  .memberContainer img.clickOptions:hover {
+    background-color: rgba(128, 128, 128, 0.32);
+  }
+  .optionsContainer {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 4;
+  }
+  
+  .optionsContainer a {
+    padding: 10px 30px;
+  }
+  
+  .optionsContainer a:hover {
+    background-color: rgba(240, 248, 255, 0.765);
+  }
+  
+  .editChatContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 30%;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .createChatContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    flex:1;
+    height: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  .searchContainer {
+    position: relative;
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .toContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+    margin-right: 5px;
+    font-size: 0.9rem;
+  }
+
+  .searchContainer form {
+    display: flex;
+    align-items: center;
+  
+  }
+  .searchContainer input {
+    margin-left: 15px;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    width: 100%;
+    height: 20px;
+    border: none;
+    outline: none;
+  }
+
+  .searchedListContainer {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    font-size: 1rem;
+    left: 20%;
+    top: 80px;
+    z-index: 2;
+   
+  }
+
+  .searchedUserContainer {
+    cursor: pointer;
+    display: flex;
+    padding: 20px 40px;
+  
+  }
+
+  .searchedUserContainer:hover {
+    background-color: aliceblue;
+  }
+
+  .addedMembersContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .addedMemberContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: aliceblue;
+    padding: 5px 5px;
+    border-radius: 8px;
+  }
+
+  .addedMemberContainer img {
+    height: 10px;
+    width: 10px;
+    margin-top: 3px;
+    cursor: pointer;
+  }
+
+  .messagesContainer {
+    height: 85%;
+    width: 100%;
+    padding: 10px 20px;
+  }
+}

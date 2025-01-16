@@ -1,0 +1,125 @@
+.signUpContainer {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signUpFormContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(600px, 100%);
+  box-sizing: border-box;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 50px 30px;
+  background-color: white;
+}
+.heading {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.heading h5 {
+  font-size: max(1.8rem, 1.6vh);
+  padding: 0;
+  margin-top: 10px;
+}
+.heading p {
+  font-size: max(1rem, 1vh);
+  margin: 10px 0;
+}
+.signUpFormContainer form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.4rem;
+  padding: 20px 0;
+}
+
+.signUpFormContainer form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signUpFormContainer input {
+  width: 100%;
+  height: max(40px, 4vh);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: max(1.4rem, 1.2vh);
+  border-width: 0;
+  box-sizing: border-box;
+  background-color: rgba(208, 219, 219, 0.4);
+}
+
+.signUpFormContainer form .name {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.signUpFormContainer .name input {
+  width: 50%;
+}
+
+.signUpFormContainer button {
+  width: 100%;
+  border-radius: 8px;
+  font-size: max(1.3rem, 1vh);
+  padding: 10px;
+  margin: 20px auto;
+  margin-bottom: 10px;
+  background-color: rgba(35, 69, 203);
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+.signUpFormContainer button:hover {
+  background-color: rgba(35, 69, 203, 0.8);
+}
+
+.signUpFormContainer .icon {
+  position: absolute;
+  top: 40px;
+  right: 35px;
+}
+
+.errorContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.errorContainer li {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0;
+  text-align: start;
+  color: rgb(203, 7, 7);
+}
+/*SIGN IN STYLE */
+
+@media (max-width: 600px) {
+  .heading {
+    text-align: center;
+  }
+  .signUpFormContainer {
+    padding: 20px;
+    box-shadow: none;
+  }
+  .signUpFormContainer form .name {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .signUpFormContainer form .name input {
+    width: 100%;
+  }
+}

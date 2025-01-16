@@ -6,6 +6,7 @@ import { useChat } from "./ChatProvider.jsx";
 import likeImage from "../assets/like.svg";
 
 import styles from "./CreateMessage.module.css";
+import domainUrl from "../utils/domain.js";
 
 function CreateMessage({ chatId, members }) {
   const [newMessage, setNewMessage] = useState("");
@@ -43,11 +44,11 @@ function CreateMessage({ chatId, members }) {
     }
   };
 
-  console.log("the message file", file);
+
   async function createChat() {
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await fetch(`http://localhost:4100/api/chats`, {
+      const response = await fetch(`${domainUrl}/api/chats`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -85,10 +86,10 @@ function CreateMessage({ chatId, members }) {
 
       if (file) {
         formData.append("file", file);
-        console.log("attahced file", file); // Append the file if it exists
+      // Append the file if it exists
       }
       console.log(formData);
-      const response = await fetch(`http://localhost:4100/api/messages`, {
+      const response = await fetch(`${domainUrl}/api/messages`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -126,9 +127,11 @@ function CreateMessage({ chatId, members }) {
       setSentMessage({ true: true });
     } else if (chatId) {
       console.log("navigating ");
+   
       const message = await createMessage(chatId, submitLike);
       console.log("right path");
       setSentMessage({ true: true });
+   
     }
   };
 

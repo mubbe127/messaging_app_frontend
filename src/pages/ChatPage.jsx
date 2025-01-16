@@ -11,7 +11,7 @@ import { ChatProvider } from "../components/ChatProvider";
 
 function ChatPage() {
   const { authState } = useAuth();
-    
+ 
 
   return (
     <>

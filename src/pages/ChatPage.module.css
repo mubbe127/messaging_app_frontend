@@ -1,0 +1,20 @@
+.chatPageContainer {
+    height: 95vh;
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    gap: 30px;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .chatPageContainer {
+        height: 95vh;
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        gap: 30px;
+        height: 100vh;
+        justify-content: center;
+    }
+  }

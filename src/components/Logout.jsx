@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/useAuth.jsx";
 import styles from "./Logout.module.css"
+import domainUrl from "../utils/domain.js";
 
 function Logout() {
   const { authState, setAuthState } = useAuth();
@@ -10,7 +11,7 @@ function Logout() {
 
   const logout = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
-    const response = await fetch(`http://localhost:4100/api/users/logout`, {
+    const response = await fetch(`${domainUrl}/api/users/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Add your API key to the headers

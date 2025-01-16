@@ -7,8 +7,8 @@ import Messages from "./Messages";
 import { useChat } from "./ChatProvider.jsx";
 import { useNavigate } from "react-router-dom";
 import EditChat from "./EditChat.jsx";
-
 import styles from "./Chat.module.css";
+import domainUrl from "../utils/domain.js";
 
 function Chat() {
   const [chat, setChat] = useState({ members: [], messages: [] });
@@ -29,7 +29,7 @@ function Chat() {
   async function getChat() {
     console.log(chatId);
     const token = localStorage.getItem("accessToken");
-    const response = await fetch(`http://localhost:4100/api/chats/${chatId}`, {
+    const response = await fetch(`${domainUrl}/api/chats/${chatId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ function Chat() {
        
         const token = localStorage.getItem("accessToken")
         const response = await fetch(
-          `http://localhost:4100/api/messages/viewed`,
+          `${domainUrl}/api/messages/viewed`,
           {
             method: "PUT",
             headers: {
@@ -117,7 +117,7 @@ function Chat() {
                   className={`${styles.profileImageContainer} ${styles.single}`}
                 >
                   <img
-                    src={"http://localhost:4100/" + chat.profileImage}
+                    src={domainUrl +"/" + chat.profileImage}
                     className={`${styles.profileImage0} ${styles.single}`}
                     alt=""
                   />
@@ -176,7 +176,7 @@ function Chat() {
                           }`}
                           src={
                             member.profileImage
-                              ? "http://localhost:4100/" + member.profileImage
+                              ? domainUrl +"/" + member.profileImage
                               : "/icons/profile.svg"
                           }
                           alt=""
@@ -270,7 +270,7 @@ function Chat() {
                             <img
                               src={
                                 member.profileImage
-                                  ? "http://localhost:4100/" +
+                                  ? domainUrl + "/" +
                                     member.profileImage
                                   : "/icons/profile.svg"
                               }

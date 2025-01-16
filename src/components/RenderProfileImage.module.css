@@ -1,0 +1,42 @@
+.profileImageContainer {
+    position: relative;
+  
+  
+  }
+
+  .profileImageContainer .profileImageSingle {
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.42);
+    margin:0;
+    box-sizing: border-box;
+  }
+  
+  .profileImageContainer .profileImage0 {
+    
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    object-fit: cover;
+    
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    box-sizing: border-box;
+    border: 2px solid white;
+    background-color: white;
+ 
+  }
+  
+  .profileImageContainer .profileImage1 {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    object-fit: cover;
+   
+    border-radius: 50%;
+    cursor: pointer;
+  } 

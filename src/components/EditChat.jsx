@@ -6,6 +6,7 @@ import RenderProfileImage from "./RenderProfileImage";
 
 import styles from "./EditChat.module.css";
 import Chat from "./Chat";
+import domainUrl from "../utils/domain";
 
 function EditChat({ chat, setEditChat }) {
   const { authState } = useAuth();
@@ -129,7 +130,7 @@ function EditChat({ chat, setEditChat }) {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await fetch(
-        `http://localhost:4100/api/chats/${chat.id}`,
+        `${domainUrl}/api/chats/${chat.id}`,
         {
           method: "PUT",
           headers: {
@@ -165,7 +166,7 @@ function EditChat({ chat, setEditChat }) {
       }
       const token = localStorage.getItem("accessToken");
       const response = await fetch(
-        `http://localhost:4100/api/chats/${chat.id}`,
+        `${domainUrl}/api/chats/${chat.id}`,
         {
           method: "PUT",
           headers: {
@@ -252,7 +253,7 @@ function EditChat({ chat, setEditChat }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:4100/api/search/chats-users`,
+        `${domainUrl}/api/search/chats-users`,
         {
           method: "POST",
           headers: {
@@ -285,7 +286,7 @@ function EditChat({ chat, setEditChat }) {
     try {
     const token = localStorage.getItem("accessToken")
       const response = await fetch(
-        `http://localhost:4100/api/chats/${chat.id}`,
+        `${domainUrl}/api/chats/${chat.id}`,
         {
           method: "PUT",
           headers: {
@@ -406,7 +407,7 @@ function EditChat({ chat, setEditChat }) {
                       className={styles.profileImage}
                       src={
                         member.profileImage
-                          ? "http://localhost:4100/" + member.profileImage
+                          ? domainUrl + "/" + member.profileImage
                           : "/icons/profile.svg"
                       }
                       alt=""
@@ -516,7 +517,7 @@ function EditChat({ chat, setEditChat }) {
                           <div className={styles.imageContainer}>
                             <img
                               src={
-                                "http://localhost:4100/" + member.profileImage
+                                domainUrl +"/" + member.profileImage
                               }
                               alt=""
                               className={styles.profileImage}
@@ -553,7 +554,7 @@ function EditChat({ chat, setEditChat }) {
                         <div className={styles.searchedUserProfile}>
                           <img
                             src={
-                              "http://localhost:4100/" +
+                              domainUrl +
                               searchedUser.profileImage
                             }
                             alt=""

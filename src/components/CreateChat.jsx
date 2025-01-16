@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Navigate, useParams, useNavigate, Link,} from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
-
+import domainUrl from "../utils/domain";
 import styles from "./CreateChat.module.css";
 import CreateMessage from "./CreateMessage";
 import Messages from "./Messages";
@@ -15,6 +15,7 @@ function CreateChat() {
   const { authState } = useAuth();
   const navigate = useNavigate();
   const searchRef = useRef(null)
+ 
 
 
   const { memberId } = useParams();
@@ -28,7 +29,7 @@ function CreateChat() {
   useEffect(() => {
     if (memberId) {
       const token = localStorage.getItem("accessToken");
-      fetch(`http://localhost:4100/api/users/${memberId}`, {
+      fetch(`${domainUrl}/api/users/${memberId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,7 +59,7 @@ function CreateChat() {
         return;
       }
       const response = await fetch(
-        `http://localhost:4100/api/search/chats-users`,
+        `${domainUrl}/api/search/chats-users`,
         {
           method: "POST",
           headers: {
@@ -110,7 +111,7 @@ function CreateChat() {
 
     try {
       const response = await fetch(
-        `http://localhost:4100/api/search/chatbymembers`,
+        `${domainUrl}/api/search/chatbymembers`,
         {
           method: "POST",
           headers: {
@@ -149,7 +150,7 @@ function CreateChat() {
   async function addChat(chat) {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await fetch(`http://localhost:4100/api/chats`, {
+      const response = await fetch(`${domainUrl}/api/chats`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -248,7 +249,7 @@ function CreateChat() {
                         <img
                           src={
                             searchedUser.profileImage
-                              ? "http://localhost:4100/" +
+                              ? domainUrl + "/" +
                                 searchedUser.profileImage
                               : "/icons/profile.svg"
                           }
