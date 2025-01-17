@@ -29,11 +29,12 @@
 .heading {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
 }
 
 .heading h2 {
-  font-size: 2.6rem;
+  font-size: 1.4rem;
 }
 
 .heading .createPostContainer {
@@ -41,14 +42,17 @@
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
-  background-color: rgba(128, 128, 128, 0.071);
-  border-radius: 50px;
-  padding: 10px 15px;
-}
 
+  
+}
 .heading .createPostContainer img {
-  height: 40px;
-  width: 40px;
+  height: 26px;
+  width: 26px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: rgba(128, 128, 128, 0.071);
+  padding: 8px;
+  cursor: pointer;
 }
 
 .chatContainer {
@@ -69,13 +73,14 @@
   flex-wrap: wrap;
   gap: 5px;
   padding: 0px 20px;
+  font-size: 1rem;
 }
 
 .latestMessage {
   padding: 0px 20px;
   display: flex;
   gap: 5px;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   color: grey;
 }
 
@@ -89,9 +94,9 @@
   color: black;
 }
 .likeImage {
-  margin-top: 2px;
-  width: 20px;
-  height:20px;
+  margin-top: 4px;
+  width: 15px;
+  height:15px;
 }
 
 @media (max-width: 600px) {

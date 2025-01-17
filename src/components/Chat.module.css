@@ -44,65 +44,23 @@
   width: 20px;
 }
 
-.profileImageContainer {
-  left: 10px;
-  top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-
-}
-
-.profileImage0 {
-
-  object-fit: cover;
-  width: 55px;
-  height: 55px;
-  border-radius: 80px;
-  cursor: pointer;
-  z-index: 2;
-  border: 3px solid white;
-  background-color: white;
-  margin-top: 15px;
-}
-
-.profileImage0.single {
-  width: 65px;
-  height: 65px;
-  border-radius: 100px;
-  border: 2px solid rgba(0, 0, 0, 0.42);
-  margin:0;
-}
-.profileImage1 {
-  object-fit: cover;
-  width: 55px;
-  height: 55px;
-  border-radius: 80px;
-  cursor: pointer;
-  margin-left: -25px;
-  margin-top: -15px;
-
-} 
 .chatNamesContainer {
   display: flex;
   align-items: center;
   border-radius: 8px;
-  margin-left: 15px;
+  margin-left: 10px;
 
 }
 
 .chatNames {
   display: flex;
   gap: 10px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   border-radius: 8px;
   margin-top: 3px;
 }
-
-
 
 .editChatButton {
   cursor: pointer;
@@ -112,7 +70,11 @@
   align-items: center;
   border-radius: 8px;
 }
+.editChatButton img {
 
+  width: 18px;
+  height: 18px;
+}
 .editChatButton:hover {
   background-color: rgba(128, 128, 128, 0.139);
 }
@@ -133,8 +95,7 @@
 .membersContainer {
   display: flex;
   flex-direction: column;
-
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -179,21 +140,22 @@
 
 .memberLink .profileImage img {
   object-fit: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 80px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
   cursor: pointer;
   padding: 10px;
 }
 .memberLink:hover .profileImage img {
-  background-color: rgba(128, 128, 128, 0.32);
+  background-color: rgba(128, 128, 128, 0.162);
 }
 
 .memberContainer img.clickOptions {
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 10px ;
   border-radius: 8px;
-  height: 20px;
+  height: 15px;
+  width: 15px;
 }
 .memberContainer img.clickOptions:hover {
   background-color: rgba(128, 128, 128, 0.32);

@@ -4,7 +4,7 @@
 }
 
 .messagesContainer {
-  padding: 10px 20px;
+  padding: 10px;
   flex: 1;
   overflow: auto;
   display: flex;
@@ -17,6 +17,8 @@
   position: relative;
   flex-direction: column;
   padding: 0 60px;
+  padding-left: 60px;
+  padding-right: 20px;
 }
 
 .content {
@@ -33,7 +35,7 @@
   background-color: rgba(176, 168, 168, 0.13);
   color: black;
   padding: 5px 15px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   border-radius: 15px;
 }
 
@@ -51,6 +53,8 @@
 
 .creator .likeContainer img {
     display: block;
+    width: 30px;
+    height: 30px;
   
 }
 
@@ -61,12 +65,11 @@
 }
 
 
-
 .user {
   margin-bottom: 0px;
-  font-size: 1.1rem;
-  padding-left: 8px;
-  margin-bottom: 10px;
+  font-size: 0.9rem;
+  padding-left: 5px;
+  margin-bottom: 6px;
 }
 
 .creator .user {
@@ -76,7 +79,7 @@
 .date {
   display: flex;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: grey;
 
@@ -95,7 +98,7 @@
 .files .image img {
   object-fit: cover;
   max-width: 60%;
-  max-height: 800px;
+  max-height: 500px;
 }
 .files .document {
   display: flex;
@@ -111,8 +114,13 @@
 
 .files .document .icon {
   object-fit: contain;
-  width: max(5%, 70px);
-  height: max(5%, 70px);
+  width: max(5%, 50px);
+  height: max(5%, 50px);
+}
+
+.files .document p {
+
+  font-size: 0.9rem;
 }
 
 .profileImage {

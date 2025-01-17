@@ -1,7 +1,7 @@
 .createMessageContainer {
   position: relative;
   width: 100%;
-  padding: 0px 10px;
+  padding: 0px 20px;
   box-sizing: border-box;
   padding-bottom: 10px;
   
@@ -31,12 +31,12 @@
 }
 
 .createMessageContainer .messageInput {
-  height: 50px;
-  padding-top: 12px;
+  height: 35px;
   box-sizing: border-box;
+  padding-top: 7px;
   padding-left: 25px;
   flex: 1;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   border-radius: 30px;
   resize: none;
   outline: none;
@@ -50,15 +50,15 @@
   background-color: white;
   outline: none;
   border: none;
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   display: flex;
   align-items: center;
 }
 
 .createMessageContainer .sendButton img{
- width: 45px;
- height: 45px;
+ width: 35px;
+ height: 35px;
   
 }
 .createMessageContainer .likeButton {
@@ -67,16 +67,16 @@
   border: none;
   cursor: pointer;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
 
 }
 
 .createMessageContainer .likeButton img {
-  width: 40px;
- height: 40px;
+  width: 28px;
+ height: 28px;
 }
 
 .createMessageContainer .labelIcon {
@@ -84,13 +84,13 @@
   align-items: center;
   cursor: pointer;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
 }
 .createMessageContainer .labelIcon img {
   object-fit: contain;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
 }
 
 .fileInput {

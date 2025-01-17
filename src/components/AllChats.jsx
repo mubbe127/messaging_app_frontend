@@ -81,7 +81,7 @@ function AllChats() {
             <RenderProfileImage
               chat={chat}
               authState={authState}
-              size={isMobile ? 55 : 80}
+              size={isMobile ? 55 : 50}
             />
             <div className={styles.chatNamesAndMessage}>
               {chat.name ? (

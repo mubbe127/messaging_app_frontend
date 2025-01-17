@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import EditChat from "./EditChat.jsx";
 import styles from "./Chat.module.css";
 import domainUrl from "../utils/domain.js";
+import RenderProfileImage from "./RenderProfileImage.jsx";
 
 function Chat() {
   const [chat, setChat] = useState({ members: [], messages: [] });
@@ -129,80 +130,7 @@ function Chat() {
                   <img src="/icons/previous.svg" alt="" onClick={goBack} />
                 </div>
               )}
-              {chat.profileImage ? (
-                <div
-                  className={`${styles.profileImageContainer} ${styles.single}`}
-                >
-                  <img
-                    src={domainUrl +"/" + chat.profileImage}
-                    className={`${styles.profileImage0} ${styles.single}`}
-                    alt=""
-                  />
-                </div>
-              ) : (
-                (() => {
-                  let memberIds = [];
-                  if (chat.messages.length > 0) {
-                    for (let i = chat.messages.length - 1; i >= 0; i--) {
-                      if (!memberIds.includes(chat.messages[i].userId)) {
-                        if (chat.messages[i].userId !== authState.user.id) {
-                          memberIds.push(chat.messages[i].userId);
-                        }
-                      }
-                      if (memberIds.length === 2) {
-                        break; // Stop once we have 2 unique members
-                      }
-                    }
-                  }
-
-                  if (memberIds.length < 2) {
-                    chat.members.forEach((member) => {
-                      if (
-                        member.id !== authState.user.id &&
-                        !memberIds.includes(member.id) &&
-                        memberIds.length < 2
-                      ) {
-                        memberIds.push(member.id);
-                      }
-                    });
-                  }
-
-                  if (memberIds.length === 0 && chat.members.length === 1) {
-                    memberIds.push(chat.members[0].id);
-                  }
-                  const selectedMembers = memberIds
-                    .map((memberId) =>
-                      chat.members.find((member) => member.id === memberId)
-                    )
-                    .filter((member) => member !== undefined);
-                  console.log("selectedmemebers", selectedMembers);
-
-                  return (
-                    <div
-                      className={`${styles.profileImageContainer} ${
-                        selectedMembers.length === 1 ? styles.single : null
-                      }`}
-                    >
-                      {selectedMembers.map((member, index) => (
-                        <img
-                          key={member.id}
-                          className={`${styles.profileImage} ${
-                            styles["profileImage" + index]
-                          } ${
-                            selectedMembers.length === 1 ? styles.single : null
-                          }`}
-                          src={
-                            member.profileImage
-                              ? domainUrl +"/" + member.profileImage
-                              : "/icons/profile.svg"
-                          }
-                          alt=""
-                        />
-                      ))}
-                    </div>
-                  );
-                })()
-              )}
+              <RenderProfileImage chat={chat } authState={authState} size={isMobile ? 50 : 40}/>
 
               <div
                 className={styles.chatNamesContainer}
