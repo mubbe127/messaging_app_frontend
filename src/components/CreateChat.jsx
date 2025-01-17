@@ -20,7 +20,24 @@ function CreateChat() {
 
   const { memberId } = useParams();
 
-  const isMobile = window.innerWidth <= 768;
+    // State to track if the screen is mobile size
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    // Effect to update the isMobile state on window resize
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+  
+      // Cleanup event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+  
 
   const goBack = () => {
     navigate(-1); // Navigates to the previous page

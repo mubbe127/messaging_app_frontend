@@ -1,5 +1,5 @@
 .chatPageContainer {
-    height: 95vh;
+    height: 95dvh;
     display: flex;
     width: 95%;
     margin: 0 auto;
@@ -9,7 +9,7 @@
 
 @media (max-width: 600px) {
     .chatPageContainer {
-        height: 95vh;
+        height: 95dvh;
         display: flex;
         width: 100%;
         margin: 0 auto;
