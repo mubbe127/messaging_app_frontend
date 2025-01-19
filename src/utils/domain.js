@@ -1,4 +1,4 @@
-const domainUrl = "https://popular-selina-mubbe127-3ca0cf84.koyeb.app"
+const domainUrl = "https://messaging-app-backend-wybf.onrender.com"
 
 
 export default domainUrl
